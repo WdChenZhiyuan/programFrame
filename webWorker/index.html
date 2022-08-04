@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚拟VDOM渲染</title>
+</head>
+
+<body>
+    <div id="view"></div>
+    <script src="./render.js"></script>
+    <script>
+        //用于产生vdom树
+        var vdom = {
+            type: 'ul',
+            props: {
+                className: 'list',
+                style: 'list-style:none;text-align:center;'
+            },
+            children: [{
+                    type: 'li',
+                    props: {
+                        className: 'item',
+                        style: 'font-size:xxx-large;'
+                    },
+                    children: [
+                        '我是渲染出的一个标题'
+                    ]
+                },
+                {
+                    type: 'li',
+                    props: {
+                        className: 'item',
+                        style: {
+                            color: 'red',
+                            background: 'blue'
+                        }
+                    },
+                    children: [
+                        '当然,我可以用style样式渲染出一些颜色'
+                    ]
+                },
+                {
+                    type: 'li',
+                    props: {
+                        className: 'item'
+                    },
+                    children: [
+                        '除此之外,直接修改CSS样式也能改变我的样式'
+                    ]
+                },
+                {
+                    type: 'li',
+                    children: [{
+                        type: 'button',
+                        props: {
+                            onClick: "add()"
+                        },
+                        children: [
+                            '点击可以新增结点'
+                        ]
+                    }]
+                },
+            ]
+        };
+        const myworker=new Worker('worker.js');
+        myworker.onmessage = function(e){
+            vdom=e.data;
+            document.getElementById('view').innerHTML = "";
+            render(vdom, document.getElementById('view'));
+        }
+
+        const add = function() {
+            console.log("尝试新增一个dom结点");
+            console.log(vdom);
+            myworker.postMessage(vdom);
+        };
+        render(vdom, document.getElementById('view'));
+    </script>
+</body>
+
+</html>

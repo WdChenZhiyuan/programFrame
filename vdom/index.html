@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚拟VDOM渲染</title>
+</head>
+
+<body>
+    <div id="view"></div>
+    <script src="./render.js"></script>
+    <script>
+        //用于产生vdom树
+        var vdom = {
+            type: 'ul',
+            props: {
+                className: 'list',
+                style: 'list-style:none;text-align:center;'
+            },
+            children: [{
+                    type: 'li',
+                    props: {
+                        className: 'item',
+                        style: 'font-size:xxx-large;',
+                        onClick: function () {
+                            alert("是的,我就是产生的标题内容");
+                        }
+                    },
+                    children: [
+                        '我是渲染出的一个可以点击的标题'
+                    ]
+                },
+                {
+                    type: 'li',
+                    props: {
+                        className: 'item',
+                        style: {
+                            color: 'red',
+                            background: 'blue'
+                        }
+                    },
+                    children: [
+                        '当然,我可以用style样式渲染出一些颜色'
+                    ]
+                },
+                {
+                    type: 'li',
+                    props: {
+                        className: 'item'
+                    },
+                    children: [
+                        '除此之外,直接修改CSS样式也能改变我的样式'
+                    ]
+                },
+                {
+                    type: 'li',
+                    children: [{
+                        type: 'button',
+                        props: {
+                            onClick: function () {
+                                console.log("尝试新增一个dom结点");
+                                var newadd = {
+                                    type: 'li',
+                                    props: {
+                                        className: 'item'
+                                    },
+                                    children: [
+                                        String(Date()) + '新增结点'
+                                    ]
+                                };
+                                //删除已经渲染出的内容
+                                document.getElementById('view').innerHTML = "";
+                                //将新增的vdom结点插入到数组之中
+                                vdom.children.push(newadd);
+                                console.log(vdom);
+                                render(vdom, document.getElementById('view'));
+                            }
+                        },
+                        children: [
+                            '点击可以新增结点'
+                        ]
+                    }]
+                },
+            ]
+        };
+        render(vdom, document.getElementById('view'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "component",
+  "version": "1.0.0",
+  "description": "这是一个使用JSX编译",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel render.js index.js -d ./dist",
+    "dev": "babel  render.js index.js -d ./dist --watch"
+  },
+  "keywords": [],
+  "author": "ZyC",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.10",
+    "@babel/preset-react": "^7.16.7"
+  }
+}
