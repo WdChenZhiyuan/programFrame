@@ -8,7 +8,7 @@
 
 [vdom实现](./vdom)
 
-![image-20220804165734806](.\images\image-20220804165734806.png)
+![image-20220804165734806.png](https://img1.imgtp.com/2022/08/04/HyZIYUap.png)
 
 **想要实现vdom就要明白，为什么要使用vdom？**
 
@@ -63,7 +63,7 @@ vdom的实现与渲染，分成了两种关键的结点进行渲染：
 
 [双线程web worker实现](./webWorker)
 
-![image-20220804171801142](.\images\image-20220804171801142.png)
+![image-20220804171801142.png](https://img1.imgtp.com/2022/08/04/TcuT5dZK.png)
 
 测试方法：需要使用http方法加载，所以最简单的方法就是使用VSCode 的Live sharer插件
 
@@ -101,7 +101,7 @@ onmessage = function(e) {
 
 [JSX编译与自定义组件渲染功能的实现](./component)
 
-<img src=".\images\image-20220804185017015.png" alt="image-20220804185017015" style="zoom:50%;" />
+<img src="https://img1.imgtp.com/2022/08/04/K6ReKklC.png" alt="image-20220804185017015.png" style="zoom:50%;" />
 
 **虚拟DOM树渲染升级**
 
@@ -193,7 +193,7 @@ function Header(props) {
 
 [最终的小程序框架](./programFrame)  [项目在线演示](http://119.3.169.4:5000/)
 
-<img src=".\images\image-20220804190746924.png" alt="image-20220804190746924" style="zoom:67%;" />
+<img src="https://img1.imgtp.com/2022/08/04/RySGmcJm.png" alt="image-20220804190746924.png" style="zoom:67%;" />
 
 **小程序框架的功能：**
 
@@ -201,13 +201,13 @@ function Header(props) {
 
    该框架内部引用了jquery库，因此支持使用ajax方法发送http请求完成前后端的对接。
 
-   <img src=".\images\image-20220804192708238.png" alt="image-20220804192708238" style="zoom:50%;" />
+   <img src="https://img1.imgtp.com/2022/08/04/obDCUM3m.png" alt="image-20220804192708238.png" />
 
 2. **小程序建立了基于vdom的前端渲染框架**
 
    该小程序通过编写完整的render.js内容，完成了一个基于vdom的前端渲染框架。
 
-   <img src=".\images\image-20220804192734175.png" alt="image-20220804192734175" style="zoom:67%;" />
+   ![image-20220804192734175.png](https://img1.imgtp.com/2022/08/04/ePHMSI0f.png)
 
 3. **小程序实现了web worker双线程作业**
 
@@ -217,7 +217,7 @@ function Header(props) {
 
    当然，有个有意思的地方在于建立起的worker进程实际上不能访问DOM，而DOM树是jQuery库在初始化时所需要的。因此，就需要我们的worker进程建立一个虚假的DOM树来欺骗JQuery，这个可以通过**JQuery.nodom.js**来实现。
 
-   ![image-20220804192805839](.\images\image-20220804192805839.png)
+   ![image-20220804192805839.png](https://img1.imgtp.com/2022/08/04/X6tCsVg7.png)
 
 4. **小程序实现了JSX编译与自定义组件的编译**
 
